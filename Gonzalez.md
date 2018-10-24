@@ -24,9 +24,9 @@
 或更传统的形式
 ![矩阵表示](/Users/chika/Desktop/notes/图像的矩阵表示2.png)
 * 处于处理存储和抽样硬件考虑,灰度的总数目灰度级常常是2的幂次:
-				L = 2^k
+				L = 2<sup>k</sup>
 * 存储图像所需的比特数b为:
-				b = M*N*k
+				b = M&times;N&times;k
 这是很好理解的:M行N列的图像有MxN个像素,每个像素有k种取值.
 * 当一幅图像有2^k个灰度,就称其为一幅k比特图像或k位图像.比如256个灰度级的图像就是8比特图像
 * 空间分辨率:一幅图中最小的可分辨细节
@@ -41,3 +41,20 @@
 * nearest neighbor interpolation:考虑500x500的图像要放大到750x750.创建一个750x750的网格,与原始图像有相同间隔,然后收缩,使其与原图匹配.显然收缩后像素间隔要小于500x500,我们就在原图中找最近的像素,把值赋给新的像素点.完成之后扩展到正常的750x750.
 * bilinear interpolation:用四个最近邻去估计给定位置的灰度.
 				v(x,y) = ax+by+cxy+d
+### 2.5 Some Basic Relationships Between Pixels
+* pixel(x,y) has 4-neighbors:(x+1,y),(x-1,y),(x,y+1),(x,y-1).This set is denoted as N<sub>4</sub>(p).and 4 diagonal neighbors:(x+1,y+1),(x+1,y-1),(x-1,y+1),(x-1,y-1),denoted as N<sub>D</sub>(P).And the 8 neighbors are denoted by N<sub>8</sub>(P).
+
+* 两个像素联通的概念:they are neighbors and if their gary levels satisfy a specified criterion of similarity.
+
+* Adjacency:
+
+  1. 4-adjacency:p&q have values from V and q is N<sub>4</sub>(p).
+  2. 8-adjacency:q is N<sub>8</sub>(p).
+  3. m-adjacency: a. q is in N<sub>4</sub>(P) or N<sub>D</sub>(P)  b. N<sub>4</sub>(P) $\bigcap$ N<sub>D</sub>(P) has no pixels whose values are from V.
+
+  混合临接是为了消除8-adjacency的ambiguity.
+
+* Path(curve):像素p(x<sub>0</sub>,y<sub>0</sub>)到像素q(s,t)有一系列的点,这些点是两两相邻的.如果首尾相等,则曲线封闭.由像素的邻接方式分4-path,8-path,m-path.
+* Connected set:p和q的通路组成了S中所有像素.对任一p,连通到p的像素集是一个连通分量.如果S中只有一个连通分量,则S是连通集.
+* Region:一个连通集又叫一个区域.
+* Boundary(Border/Contour):有一个或以上的neighbors不在R里的像素的集合
