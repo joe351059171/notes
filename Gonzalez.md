@@ -58,3 +58,10 @@
 * Connected set:p和q的通路组成了S中所有像素.对任一p,连通到p的像素集是一个连通分量.如果S中只有一个连通分量,则S是连通集.
 * Region:一个连通集又叫一个区域.
 * Boundary(Border/Contour):有一个或以上的neighbors不在R里的像素的集合
+
+## 3  Image Enhancement in the Spatial Domain
+* 主旨是处理图像让它更适合特定应用处理
+* 没有固定评判标准
+### 3.1 Background
+* 单点操作:gray-level(also called intensity or mapping) transformation funciton
+* larger neighbors:masks(also referred to as filters,kernels,templates,or windows) 主要方法就是用(x,y)点的neighbor的值去确定(x,y)的值
