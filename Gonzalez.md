@@ -66,3 +66,6 @@
 ### 3.1 Background
 * 单点操作:gray-level(also called intensity or mapping) transformation funciton
 * larger neighbors:masks(also referred to as filters,kernels,templates,or windows) 主要方法就是用(x,y)点的neighbor的值去确定(x,y)的值
+### 3.2 Some Basic Gray Level Transformation
+* 反转intensity level特别适合处理在黑色区域的白或灰色细节
+* log用来增加图片中的黑色像素的取值,压缩更高程度的值.
