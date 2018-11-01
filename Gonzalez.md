@@ -58,7 +58,6 @@
 * Connected set:p和q的通路组成了S中所有像素.对任一p,连通到p的像素集是一个连通分量.如果S中只有一个连通分量,则S是连通集.
 * Region:一个连通集又叫一个区域.
 * Boundary(Border/Contour):有一个或以上的neighbors不在R里的像素的集合
-<<<<<<< HEAD
 
 ## 3  Image Enhancement in the Spatial Domain
 * 主旨是处理图像让它更适合特定应用处理
@@ -67,5 +66,8 @@
 * 单点操作:gray-level(also called intensity or mapping) transformation funciton
 * larger neighbors:masks(also referred to as filters,kernels,templates,or windows) 主要方法就是用(x,y)点的neighbor的值去确定(x,y)的值
 ### 3.2 Some Basic Gray Level Transformation
-* 反转intensity level特别适合处理在黑色区域的白或灰色细节
-* log用来增加图片中的黑色像素的取值,压缩更高程度的值.
+* 反转intensity level特别适合处理在黑色区域的白或灰色细节(mammogram)
+* log用来增加图片中的黑色像素的取值,压缩更高程度的值.(傅立叶频谱图)
+* Power-Law transformation s = cr<sup>&gamma;</sup> ,取决于&gamma;的值,十分灵活;Gamma Correction(CRT);P-L trans也对提高对比度很有用.
+* Piecewise-Linear Transformation:Contrast Stretching;分段的两个点满足一定条件就是thresholding:gray-level slicing:强调某个范围的灰度,要么对range of interest内highlight,其他的调低,要么调高ROI,其他不变;bit-plane slicing,highlight the contribution made to total image appearance by specific bits,获取主要成分可以thresholding
+
