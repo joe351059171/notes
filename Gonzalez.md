@@ -70,4 +70,17 @@
 * log用来增加图片中的黑色像素的取值,压缩更高程度的值.(傅立叶频谱图)
 * Power-Law transformation s = cr<sup>&gamma;</sup> ,取决于&gamma;的值,十分灵活;Gamma Correction(CRT);P-L trans也对提高对比度很有用.
 * Piecewise-Linear Transformation:Contrast Stretching;分段的两个点满足一定条件就是thresholding:gray-level slicing:强调某个范围的灰度,要么对range of interest内highlight,其他的调低,要么调高ROI,其他不变;bit-plane slicing,highlight the contribution made to total image appearance by specific bits,获取主要成分可以thresholding
+### 3.3 Histogram Processing
+低对比度集中在一坨,高对比度就覆盖了很宽的范围,像素分布也近似均匀分布
+* Histogram Equalization,要求变换函数T(r)单值且在区间内单增,且0$\le$T(r)$\le$1 for 0 $\le$ r $\le$ 1
+* T(r)和p<sub>r</sub>(r)有关,但结果上的p<sub>s</sub>(s)总是均匀的,独立于p<sub>r</sub>(r)的.p是概率密度函数
+* histogram equalization: s<sub>k</sub> = $\sum_{j=0}^k$ $\frac{n_j}n$  k = 0,1,2,……,L-1  使柱状图更扩展到整个图使灰度范围变大,加强对比度
+* histogram matching(specification):有些情况均匀地增强并不是最好的.我们由输入得p,进而得s,从而求得变换函数G(z),反解出z = G<sup>-1</sup>(s),这个从s到z的映射就是我们期望的.一般步骤就是先均衡得s,对均衡图像中值为s的每个像素进行反映射得相应像素值z,处理完毕后就得到输出图像的PDF等于指定的PDF.
+* 局部增强:neighbor,一个一个移,计算邻域中的点的直方图,但通常会产生checkerboard effect.
+* 直方图的一些数据:均值、方差.用来局部增强.
+
+![局部增强](/Users/chika/Desktop/notes/局部增强.png)
+
+* 通过全局均值和局部均值找出暗区域,通过方差(对比度)确定暗区域中需要增强的点
+
 
