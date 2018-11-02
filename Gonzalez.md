@@ -82,5 +82,5 @@
 ![局部增强](/Users/chika/Desktop/notes/局部增强.png)
 
 * 通过全局均值和局部均值找出暗区域,通过方差(对比度)确定暗区域中需要增强的点
-
-
+### Enhancement Using Arithmetic/Logic Operations
+* Image Averaging:K 增加,像素的噪声减小;当噪声图像的数量增加,平均过后的图像就越接近原始图像
