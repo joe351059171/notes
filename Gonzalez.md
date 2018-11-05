@@ -82,5 +82,11 @@
 ![局部增强](/Users/chika/Desktop/notes/局部增强.png)
 
 * 通过全局均值和局部均值找出暗区域,通过方差(对比度)确定暗区域中需要增强的点
-### Enhancement Using Arithmetic/Logic Operations
+### 3.4 Enhancement Using Arithmetic/Logic Operations
 * Image Averaging:K 增加,像素的噪声减小;当噪声图像的数量增加,平均过后的图像就越接近原始图像
+### 3.5 Basics of Spatial Filtering
+* filter,mask,kernel,template,window实际上都是一张subimage,它的值被叫做系数而不是像素
+* 为了区别频域,我们把这种处理叫做spatial fitering
+* R = $\sum_{i=1}^9$$\omega_i$$\Zeta_i$  3&times;3的常用公式
+* 对于filter到了边界的情况,我们要么规定filter中心不能超过(n-1)/2,即filter不能越界,这种情况我们得到了一个比原图片小的用full mask处理过的图片;要么我们不管越界部分的filter,只用部分的mask去处理图片;或者把原图扩展,在边缘加0(或其他值),处理完之后再消掉这些padding
+
