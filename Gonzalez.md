@@ -89,4 +89,9 @@
 * 为了区别频域,我们把这种处理叫做spatial fitering
 * R = $\sum_{i=1}^9$$\omega_i$$\Zeta_i$  3&times;3的常用公式
 * 对于filter到了边界的情况,我们要么规定filter中心不能超过(n-1)/2,即filter不能越界,这种情况我们得到了一个比原图片小的用full mask处理过的图片;要么我们不管越界部分的filter,只用部分的mask去处理图片;或者把原图扩展,在边缘加0(或其他值),处理完之后再消掉这些padding
-
+### Smoothing Spatial Filters
+* smoothing filters are used for blurring and for noise reduction
+* *averaging filters(lowpass filters)* :**linear**,give the average of the pixels contained in the neighborhood of the filter mask as a response.
+* smoothing filter可以降噪是因为噪声主要存在于灰度的一个突变中,通过把一个像素换为它邻近区域的一个均值,可以减小突变.然而edge也会被减小,这是不希望的
+* weighted average : pixels are multiplied by different coefficients,thus giving more improtance to some pixels at the expense of others.Basic strategy is to reduce blurring in the smoothing process.
+* order-statstics filters:**nonlinear**,其中最广为人知的代表就是median filter,把像素的值换成整个区域的中间值.对于去除椒盐噪声极其有效
