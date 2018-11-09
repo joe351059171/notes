@@ -96,5 +96,46 @@
 * weighted average : pixels are multiplied by different coefficients,thus giving more improtance to some pixels at the expense of others.Basic strategy is to reduce blurring in the smoothing process.
 * order-statstics filters:**nonlinear**,其中最广为人知的代表就是median filter,把像素的值换成整个区域的中间值.对于去除椒盐噪声极其有效
 ### 3.7 Sharpening Spatial Filters
+* 对于一阶微分的定义一般要保证:1. 在恒定灰度区域微分值不变. 2. 在灰度台阶或斜坡处微分值为0. 3. 沿斜坡微分值为0. 
 
+* 类似的,二阶微分要保证:1. 在恒定区域微分值为0. 2. 在灰度台阶或斜坡的起点处微分值非零. 3. 沿斜坡微分值非零
 
+* 一阶差分公式:	$\frac{\partial f}{\partial x}$ = f(x+1) - f(x)
+
+* 二阶差分公式:	$\frac{\partial^2 f}{\partial x^2}$ = f(x+1) + f(x-1) -2f(x)
+
+* 边缘在灰度上来说常常类似ramp,而由图可以看出
+
+  ![一阶&二阶差分](/Users/chika/Desktop/notes/一阶和二阶差分.png)
+
+在ramp的部分一阶差分一直都是非零的,也就是说如果用一阶差分处理过后的图像边缘部分一般是很宽的;而二阶微分在ramp的起始位置是从负到0到正的,这就意味着会产生一个双边缘
+
+* Laplacian: 各向同性	$\nabla^2f$ = $\frac{\partial^2f}{\partial x^2}$ + $\frac{\partial^2f}{\partial y^2}$	将其离散,有
+
+  $\frac{\partial^2f}{\partial x^2}$ = f(x+1,y) + f(x-1,y) - 2f(x,y)     [x方向];
+
+  同理有 
+
+  $\frac{\partial^2f}{\partial y^2}$ = f(x,y+1) + f(x,y-1) - 2f(x,y)	   [y方向];
+
+  那么两个变量的离散拉普拉斯算子就是
+
+  $\nabla^2f(x,y)$ = $f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)$
+
+  它的滤波模版如图3.7(a);至于对角线方向,我们在对角线方向加入两项,然后在中新元素减去即可;实际中也有用如c或d这样的滤波模版,差别仅仅是符号而已,在用拉普拉斯算子滤波过后的图像与其他图像合并是考虑到符号差异来进行加减即可,即中心系数为正时用+号,为负用-号
+
+  ![laplacian滤波模版](/Users/chika/Desktop/notes/laplacian滤波模版.png)
+
+需要注意的是,在实际中,也可以略过先滤波再加减图像的步骤,可以直接一步到位获得锐化图像.即直接加上一个f(x,y)就可以,即3.37中的c,d的中心系数从4变为了5,从8变为了9(或a,b减小到-5,-9)
+
++ unsharp masking : 1,模糊原图;2,从原图中减去模糊图像(剩下来的部分称为模版);						1.$f_s(x,y)=f(x,y)-\bar f(x,y)$ 
+
+* high-boost filtering:             2.$f_{hb}(x,y)=Af(x,y)-\bar f(x,y)$ 
+
+  high-boost filtering is a slight further generalization of unsharp masking;A$\geq$1,化简后有$f_{hb}(x,y)=(A-1)f(x,y)+f_s(x,y)$	,$f_s$代表锐化过后的图像,实际上它并不要求必须是unsharp masking得到的,比如我们用laplacian,那$f_{hb}$就变成了$Af(x,y)\pm\nabla^2f(x,y)$;实际上当A=1的时候,high-boost过滤就是个标准的Laplacian sharpening,A超过1且越来越大,那锐化的作用也在逐渐减小,如果A足够大,high-boost处理过后的图片大概就和原图乘了个常数没啥区别
+
+* Gradient: $\nabla f$ &equiv;$grad(f)$&equiv;$$\begin{bmatrix}G_x\\ G_y\end{bmatrix}$$&equiv;$$\begin{bmatrix} \frac{\partial f}{\partial x}\\ \frac{\partial f}{\partial y}\end{bmatrix}$$,就像我们学过的,梯度指出了点(x,y)处f的最大变化率的方向;而它的magnitude表示为$M(x,y)=mag(\nabla f)=\sqrt(G^2_x+G^2_y)$,需要注意M是和原图像大小相同的图像,常称梯度图像;为了减小运算负担,我们常用绝对值来近似$M(x,y)\approx\left|G_x\right|+\left|G_y\right|$
+
+* Robert corss-gradient operators&Sobel operators,梯度可消除慢变化背景,增强小突变
+
+  ![交叉梯度算子和索贝尔算子](/Users/chika/Desktop/notes/交叉梯度算子&索贝尔算子.png)
