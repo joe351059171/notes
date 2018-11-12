@@ -151,6 +151,12 @@
     $F(u) = \frac{1}{M}\sum_{x=0}^{M-1}f(x)e^{-j2{\pi}ux/M}$	$for\ u = 0,1,2,...,M-1.$
 
     $f(x) = \sum^{M-1}_{u=0}F(u)e^{j2{\pi}ux/M}$	$for\ x = 0,1,2,...,M-1.$
-* 对于DFT和IDFT,1/M放在哪里都可以,或者两个前头都乘1/$\sqrt M$
+ 对于DFT和IDFT,1/M放在哪里都可以,或者两个前头都乘1/$\sqrt M$
 
-* 又有欧拉公式:$e^{j\theta} = cos\theta + jsin\theta$ ,离散傅立叶变换F(u)可化为$F(u) = \frac{1}{M}\sum\limits^{M-1}_{x=0}f(x)[cos2{\pi}ux/M - jsin2{\pi}ux/M]$
+ 又有欧拉公式:$e^{j\theta} = cos\theta + jsin\theta$ ,离散傅立叶变换F(u)可化为$F(u) = \frac{1}{M}\sum\limits^{M-1}_{x=0}f(x)[cos2{\pi}ux/M - jsin2{\pi}ux/M]$
+ 可化为极坐标系$F(u) = \left|F(u)\right|e^{-j\phi(u)}$,其中$\left|F(u)\right| = [R^2(u)+I^2(u)]^{1/2}$,$\phi(u) = tan^{-1}[\frac{I(u)}{R(u)}]$
+
+* 空间域X轴和曲线围成的面积加倍,则频域主频的高度翻倍;X轴翻倍,零点个数翻倍
+* $\Delta u = \frac{1}{M\Delta x}$,这是空间域和频率域的关系
+* 以上是一维时的情况,接下来分析二维
+
