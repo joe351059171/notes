@@ -140,3 +140,17 @@
 
   ![交叉梯度算子和索贝尔算子](/Users/chika/Desktop/notes/交叉梯度算子&索贝尔算子.png)
 ## 4  Image Enhancement in the Frequency Domain
+### 4.2 Introduction to the Fourier Transform and the Frequency Domain
+* 傅立叶变换对
+    $F(u,v) = $$$\int_{-\infty}^\infty\int_{-\infty}^\infty{f(x,y)e^{-j2\pi(ux+vy)}\,{\rm dx\rm dy}}$$
+
+    $f(x,y) = $$$\int_{-\infty}^\infty\int_{-\infty}^\infty{F(u,v)e^{j2\pi(ux+vy)}\,{\rm du\rm dv}}$$
+
+* 我们更关心离散的情况,因此:
+
+    $F(u) = \frac{1}{M}\sum_{x=0}^{M-1}f(x)e^{-j2{\pi}ux/M}$	$for\ u = 0,1,2,...,M-1.$
+
+    $f(x) = \sum^{M-1}_{u=0}F(u)e^{j2{\pi}ux/M}$	$for\ x = 0,1,2,...,M-1.$
+* 对于DFT和IDFT,1/M放在哪里都可以,或者两个前头都乘1/$\sqrt M$
+
+* 又有欧拉公式:$e^{j\theta} = cos\theta + jsin\theta$ ,离散傅立叶变换F(u)可化为$F(u) = \frac{1}{M}\sum\limits^{M-1}_{x=0}f(x)[cos2{\pi}ux/M - jsin2{\pi}ux/M]$
