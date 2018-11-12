@@ -139,3 +139,4 @@
 * Robert corss-gradient operators&Sobel operators,梯度可消除慢变化背景,增强小突变
 
   ![交叉梯度算子和索贝尔算子](/Users/chika/Desktop/notes/交叉梯度算子&索贝尔算子.png)
+## 4  Image Enhancement in the Frequency Domain
