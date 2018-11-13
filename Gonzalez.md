@@ -154,9 +154,32 @@
  对于DFT和IDFT,1/M放在哪里都可以,或者两个前头都乘1/$\sqrt M$
 
  又有欧拉公式:$e^{j\theta} = cos\theta + jsin\theta$ ,离散傅立叶变换F(u)可化为$F(u) = \frac{1}{M}\sum\limits^{M-1}_{x=0}f(x)[cos2{\pi}ux/M - jsin2{\pi}ux/M]$
- 可化为极坐标系$F(u) = \left|F(u)\right|e^{-j\phi(u)}$,其中$\left|F(u)\right| = [R^2(u)+I^2(u)]^{1/2}$,$\phi(u) = tan^{-1}[\frac{I(u)}{R(u)}]$
+ 可化为极坐标系$F(u) = \left|F(u)\right|e^{-j\phi(u)}$,其中$\left|F(u)\right| = [R^2(u)+I^2(u)]^{1/2}$,$\phi(u) = tan^{-1}[\frac{I(u)}{R(u)}]$,功率谱:$P(u) = \left|F(u)\right|^2=R^2(u)+I^2(u)$
 
 * 空间域X轴和曲线围成的面积加倍,则频域主频的高度翻倍;X轴翻倍,零点个数翻倍
+
 * $\Delta u = \frac{1}{M\Delta x}$,这是空间域和频率域的关系
-* 以上是一维时的情况,接下来分析二维
+
+* 以上是一维时的情况,接下来二维:
+
+  $F(u,v)=\frac{1}{MN}\sum\limits^{M-1}_{x=0}\sum\limits^{N-1}_{y=0}f(x,y)e^{-j2\pi(ux/M+vy/N)}$,u = 0,1,2,...,M-1;v = 0,1,2,...,N-1;
+
+  $f(x,y)=\sum\limits^{M-1}_{u=0}\sum\limits^{N-1}_{v=0}F(u,v)e^{j2\pi{ux/M+vy/N}}$,x = 0,1,2,...,M-1;y = 0,1,2,...,N-1
+
+* 由于指数的一些性质,有$\frak F$$[f(x,y)(-1)^{x+y}]=F(u-M/2,v-N/2)$,$\frak F[·]$ denotes Fourier transform.这也就是说,给f(x,y)乘上$(-1)^{x+y}$,就会把F(u,v)给一到左边(M/2,N/2)的位置,即M&times;N的中心,我们把M&times;N这块区域叫做frequency rectangle
+* 有个性质,$F(0,0)=\frac{1}{MN}\sum^{M-1}_{x=0}\sum^{N-1}_{y=0}f(x,y)$,即是说,傅立叶变换的原点的值,就是整张图灰度值的平均
+* 二维有这个关系:$\Delta u=\frac{1}{M\Delta x}$;$\Delta v= \frac{1}{N\Delta y}$
+* 在频率域过滤是很简单的,它一般由一下组成:
+  1. 给输入图像乘个$(-1)^{x+y}$
+  2. 计算1的DFT得到F(u,v)
+  3. 给F(u,v)乘上过滤函数H(u,v)
+  4. 计算3的IDFT
+  5. 取4的实部
+  6. 给5乘个$(-1)^{x+y}$
+
+* notch filter:由于要使总的灰度为0,因此图像总体会变黑;边缘凸显
+
+  $H(u,v)=\begin{cases} 0,&\text{if (u,v)=(M/2,N/2)}\\1,&\text{otherwise.}\end{cases}$
+* 低通blur;高通sharp,with little smooth gray-level detail
+
 
