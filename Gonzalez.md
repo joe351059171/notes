@@ -167,8 +167,11 @@
   $f(x,y)=\sum\limits^{M-1}_{u=0}\sum\limits^{N-1}_{v=0}F(u,v)e^{j2\pi{ux/M+vy/N}}$,x = 0,1,2,...,M-1;y = 0,1,2,...,N-1
 
 * 由于指数的一些性质,有$\frak F$$[f(x,y)(-1)^{x+y}]=F(u-M/2,v-N/2)$,$\frak F[·]$ denotes Fourier transform.这也就是说,给f(x,y)乘上$(-1)^{x+y}$,就会把F(u,v)给一到左边(M/2,N/2)的位置,即M&times;N的中心,我们把M&times;N这块区域叫做frequency rectangle
+
 * 有个性质,$F(0,0)=\frac{1}{MN}\sum^{M-1}_{x=0}\sum^{N-1}_{y=0}f(x,y)$,即是说,傅立叶变换的原点的值,就是整张图灰度值的平均
+
 * 二维有这个关系:$\Delta u=\frac{1}{M\Delta x}$;$\Delta v= \frac{1}{N\Delta y}$
+
 * 在频率域过滤是很简单的,它一般由一下组成:
   1. 给输入图像乘个$(-1)^{x+y}$
   2. 计算1的DFT得到F(u,v)
@@ -180,6 +183,23 @@
 * notch filter:由于要使总的灰度为0,因此图像总体会变黑;边缘凸显
 
   $H(u,v)=\begin{cases} 0,&\text{if (u,v)=(M/2,N/2)}\\1,&\text{otherwise.}\end{cases}$
+
 * 低通blur;高通sharp,with little smooth gray-level detail
 
+* 在空间域和频率域过滤的对应关系:convolution theorem
 
+  $f(x,y)*h(x,y)=\frac{1}{MN}\sum\limits^{M-1}_{m=0}\sum\limits^{N-1}_{n=0}f(m,n)h(x-m,y-n)$
+
+  $f(x,y)*h(x,y)\iff F(u,v)H(u,v)$&&$f(x,y)h(x,y)\iff F(u,v)*H(u,v)$
+
+  we need one more concept before completing the tie between the spatial and frequency domains.An impulse function of strength A,located at coordinates$(x_0,y_0)$,is denoted by $A\delta(x-x_0,y-y_0)$and is defined by the expression:
+
+  ​	$\sum\limits^{M-1}_{x=0}\sum\limits^{N-1}_{y=0}s(x,y)A\delta(x-x_0,y-y_0)=As(x_0,y_0)$
+
+  这就是说s(x,y)乘冲激函数的和就是冲激位置的那个函数值乘上冲激函数的幅值A
+
+* sifting property of the impulse function:一个函数和冲激函数的卷积就是复制在冲激位置的函数值;当冲激函数位于原点时:
+
+  $\sum\limits^{M-1}_{x=0}\sum\limits^{N-1}_{y=0}s(x,y)\delta(x,y)=s(0,0)$
+
+* 有了上述概念,我们就可以引出最有趣和有用的关系(其实就是证出了对于一个filter,它的DFT和IDFT构成了一个傅立叶变换对)
