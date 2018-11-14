@@ -203,3 +203,15 @@
   $\sum\limits^{M-1}_{x=0}\sum\limits^{N-1}_{y=0}s(x,y)\delta(x,y)=s(0,0)$
 
 * 有了上述概念,我们就可以引出最有趣和有用的关系(其实就是证出了对于一个filter,它的DFT和IDFT构成了一个傅立叶变换对)
+
+  $\frak F$$[\delta(x,y)]=\frac{1}{MN}\sum\limits^{M-1}_{x=0}\sum\limits^{N-1}_{y=0}\delta(x,y)e^{-j2\pi(ux/M+vy/N)}=\frac{1}{MN}$
+
+  $\delta(x,y)*h(x,y)=\frac{1}{MN}\sum\limits^{M-1}_{m=0}\sum\limits^{N-1}_{n=0}\delta(m,n)h(x-m,y-n)=\frac{1}{MN}h(x,y)$
+
+  我们知道:$f(x,y)*h(x,y)\iff F(u,v)H(u,v)$,那把f(x,y)换成$\delta(x,y)$,就是$\delta(x,y)*h(x,y)\iff$$\frak F$$[\delta(x,y)]H(u,v)$,又$\frak F$$[\delta(x,y)]$是个常数,左边的结果也是个常数乘h(x,y),那么就有$h(x,y)\iff H(u,v)$
+
+* 我们常用基于高斯函数的过滤因为高斯函数的形状简单,而且他的变换都是高斯实函数:$H(u)=Ae^{-u^2/2\sigma^2}$,它的逆变换$h(x)=\sqrt{2\pi}Ae^{-2\pi^2\sigma^2x^2}$,可以看到他们两随$\sigma$的变换,形状刚好是呈相反趋势变化的
+![高斯滤波](/Users/chika/Desktop/notes/高斯滤波.png)
+
+### 4.3 Smoothing Frequecy-Domain Filters
+* 主要三种低通滤波器:ideal,Butterworth&Gaussian filters;ideal very sharp ,Guassian very smooth,Butterworth is a transition between 2 extremes,order越高越接近理想,越低越接近高斯
