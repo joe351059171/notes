@@ -215,3 +215,36 @@
 
 ### 4.3 Smoothing Frequecy-Domain Filters
 * 主要三种低通滤波器:ideal,Butterworth&Gaussian filters;ideal very sharp ,Guassian very smooth,Butterworth is a transition between 2 extremes,order越高越接近理想,越低越接近高斯
+
+* ILPF:$H(u,v)=\begin{cases} 1,&\text{if D(u,v) $\leq D_0$}\\0,&\text{if D(u,v) $> D_0$}\end{cases}$,$D_0$是指定的非负值,D(u,v)是点(u,v)到频率矩形原点的距离.
+
+  ![ILPF](/Users/chika/Desktop/notes/ILPF.png)
+
+  圆内无衰减,圆外完全被衰减
+
+* $P_T=\sum\limits^{M-1}_{u=0}\sum\limits^{N-1}_{v=0}P(u,v)$,计算图像总的功率,然后通过$\alpha=100[\sum\limits_{u}\sum\limits_vP(u,v)/P_T]$,求得当前的subimage占总的功率的多少,然后这个对应了功率图中圆占的面积.![功率圆](/Users/chika/Desktop/notes/功率圆.png)
+
+  随着$\alpha$的增大,高频的增加使细节越来越好;“ringing”是ILPF的的一种特性
+
+* ![ringing的解释](/Users/chika/Desktop/notes/ringing的解释.png)
+
+* BLPF:$H(u,v)=\frac{1}{1+[D(u,v)/D_0]^{2n}}$,Ringing generally is imperceptible in filters of order 2, 一阶完全没有,高阶就会越来越明显;
+* GLPF:$H(u,v)=e^{-D^2(u,v)/{2\sigma^2}}$通过令$\sigma=D_0$,有$H(u,v)=e^{-D^2(u,v)/{2D_0^2}}$,$D_0$是截止频率,当$D(u,v)=D_0$时,GLPF下降到最大值的0.607.GLPF平滑的效果比二阶的BLPF要差一点,但他没有ringing,这是很重要的
+### 4.4 Sharpening Frequency Domain Filters
+* $H_{hp}(u,v)=1-H_{lp}(u,v)$低通通过的频率,高通截止,低通不通的频率高通通过
+
+* IHPF:$H(u,v)=\begin{cases} 0,&\text{if D(u,v) $\leq D_0$}\\1,&\text{if D(u,v) $> D_0$}\end{cases}$,可以想见的是IHPF也是有ringing的
+
+  ![HPF剖面图](/Users/chika/Desktop/notes/HPF剖面图.png)
+
+* BHPF:$H(u,v)=\frac{1}{1+[D_0/D(u,v)]^{2n}}$
+
+* GHPF:$H(u,v)=1-e^{-D^2(u,v)/{2D_0^2}}$,高斯滤波得到的结果更加平滑,效果较好
+
+* ![IHPF滤波](/Users/chika/Desktop/notes/IHPF滤波.png)
+
+  ​	![BHPF滤波](/Users/chika/Desktop/notes/BHPF滤波.png)
+
+  ![GHPF滤波](/Users/chika/Desktop/notes/GHPF滤波.png)
+
+* Laplacian in the Frequency Domain
