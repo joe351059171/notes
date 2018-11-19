@@ -249,4 +249,8 @@
 
 * Laplacian in the Frequency Domain
 
-  $\frak F$$\frac{d^nf(x)}{dx^n}=(ju)^nF(u)$,由它有$\frak F$$[\nabla^2f(x,y)]=-(u^2+v^2)F(u,v)$,这就是说$H(u,v)=-(u^2+v^2)$,于是有$\nabla^2f(x,y)\iff -[(u-M/2)^2+(v-N/2)^2]F(u,v)$,之后的操作就与之前一样,在原图像上加减,同样的也可以一步获得增强后的图像:$g(x,y)=$$\frak F^{-1}${${[1-((u-M2/)^2+(v-N/2)^2)]F(u,v)}$}
+  $\frak F$$\frac{d^nf(x)}{dx^n}=(ju)^nF(u)$,由它有$\frak F$$[\nabla^2f(x,y)]=-(u^2+v^2)F(u,v)$,这就是说$H(u,v)=-(u^2+v^2)$,于是有$\nabla^2f(x,y)\iff -[(u-M/2)^2+(v-N/2)^2]F(u,v)$,之后的操作就与之前一样,在原图像上加减,同样的也可以一步获得增强后的图像:$g(x,y)=$$\frak F^{-1}${${[1-((u-M/2)^2+(v-N/2)^2)]F(u,v)}$}
+
+* high-frequency emphasis:$H_{hfe}(u,v)=a+bH_{hp}(u,v)$
+### 4.5 Homomorphic Filtering
+* 假定一幅图像可分解为i(x,y)和r(x,y)的乘积,由于傅立叶变换的性质,F(ab)不等于F(a)F(b),于是转换成ln的函数;
