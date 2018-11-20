@@ -253,4 +253,14 @@
 
 * high-frequency emphasis:$H_{hfe}(u,v)=a+bH_{hp}(u,v)$
 ### 4.5 Homomorphic Filtering
-* 假定一幅图像可分解为i(x,y)和r(x,y)的乘积,由于傅立叶变换的性质,F(ab)不等于F(a)F(b),于是转换成ln的函数;
+* 假定一幅图像可分解为i(x,y)和r(x,y)的乘积,由于傅立叶变换的性质,F(ab)不等于F(a)F(b),于是转换成ln的函数;那ln(x*y)就可以转换成lnx+lny,这个就可以用傅立叶变换了;之后又e一下,就得到了变换后的图像.
+
+  ![同态滤波小结](/Users/chika/Desktop/notes/同态滤波小结.png)
+
+  同态滤波可以更好控制照射分量和反射分量;通过指定滤波函数H(u,v)可以用不同的方法去影响傅立叶变换的高频和低频分量,比如:
+
+  ![同态滤波](/Users/chika/Desktop/notes/同态滤波.png)
+
+如果$\gamma_L$和$\gamma_H$选定,而且$\gamma_L<1$,$\gamma_H>1$,那么这个滤波函数就趋向于衰减照射(低频)的贡献,增强高频(反射)的贡献.最终结果是同时进行动态范围的压缩和对比度的增强.
+
+可用高通滤波器来进行近似,例如高斯高通:$H(u,v)=(\gamma_H-\gamma_L)[1-e^{-c[D^2(u,v)/D_0^2]}]+\gamma_L$,常数c控制坡度的锐利程度,在$\gamma_L$和$\gamma_H$之间过渡
