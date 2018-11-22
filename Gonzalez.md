@@ -132,7 +132,7 @@
 
 * high-boost filtering:             2.$f_{hb}(x,y)=Af(x,y)-\bar f(x,y)$ 
 
-  high-boost filtering is a slight further generalization of unsharp masking;A$\geq$1,化简后有$f_{hb}(x,y)=(A-1)f(x,y)+f_s(x,y)$	,$f_s$代表锐化过后的图像,实际上它并不要求必须是unsharp masking得到的,比如我们用laplacian,那$f_{hb}$就变成了$Af(x,y)\pm\nabla^2f(x,y)$;实际上当A=1的时候,high-boost过滤就是个标准的Laplacian sharpening,A超过1且越来越大,那锐化的作用也在逐渐减小,如果A足够大,high-boost处理过后的图片大概就和原图乘了个常数没啥区别
+  high-boost filtering is a slight further generalization of unsharp masking;A$\geq​$1,化简后有$f_{hb}(x,y)=(A-1)f(x,y)+f_s(x,y)​$	,$f_s​$代表锐化过后的图像,实际上它并不要求必须是unsharp masking得到的,比如我们用laplacian,那$f_{hb}​$就变成了$Af(x,y)\pm\nabla^2f(x,y)​$;实际上当A=1的时候,high-boost过滤就是个标准的Laplacian sharpening,A超过1且越来越大,那锐化的作用也在逐渐减小,如果A足够大,high-boost处理过后的图片大概就和原图乘了个常数没啥区别
 
 * Gradient: $\nabla f$ &equiv;$grad(f)$&equiv;$$\begin{bmatrix}G_x\\ G_y\end{bmatrix}$$&equiv;$$\begin{bmatrix} \frac{\partial f}{\partial x}\\ \frac{\partial f}{\partial y}\end{bmatrix}$$,就像我们学过的,梯度指出了点(x,y)处f的最大变化率的方向;而它的magnitude表示为$M(x,y)=mag(\nabla f)=\sqrt(G^2_x+G^2_y)$,需要注意M是和原图像大小相同的图像,常称梯度图像;为了减小运算负担,我们常用绝对值来近似$M(x,y)\approx\left|G_x\right|+\left|G_y\right|$
 
@@ -263,4 +263,12 @@
 
 如果$\gamma_L$和$\gamma_H$选定,而且$\gamma_L<1$,$\gamma_H>1$,那么这个滤波函数就趋向于衰减照射(低频)的贡献,增强高频(反射)的贡献.最终结果是同时进行动态范围的压缩和对比度的增强.
 
-可用高通滤波器来进行近似,例如高斯高通:$H(u,v)=(\gamma_H-\gamma_L)[1-e^{-c[D^2(u,v)/D_0^2]}]+\gamma_L$,常数c控制坡度的锐利程度,在$\gamma_L$和$\gamma_H$之间过渡
+可用高通滤波器来进行近似,例如高斯高通:$H(u,v)=(\gamma_H-\gamma_L)[1-e^{-c[D^2(u,v)/D_0^2]}]+\gamma_L$,常数c控制坡度的锐利程度,在$\gamma_L$和$\gamma_H​$之间过渡
+### 4.6 Implementation
+* some properties of DFT
+    平移和旋转:
+    ![平移和旋转](/Users/chika/Desktop/notes/平移和旋转特性.png)
+* 介绍了一下傅立叶变换计算时的可分型,即先列变换再行变换或vice versa;如果不padding就会出错的原因,padding的必要性
+* 卷积和相关:相关用来matching,$f(x,y)\circ h(x,y)\iff F^*(u,v)H(u,)$,$f^*(x,y)h(x,y)\iff F(u,v)\circ H(u,v)$
+
+* FFT:把傅立叶变换拆成奇偶两项来进行运算以降低时间复杂度
