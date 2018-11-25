@@ -15,7 +15,7 @@
 
 上式中反射分量限制在0（全吸收）和1（全反射）之间。i(x,y)
 的性质取决于照射源，而r(x,y)取决于成像物体的特性。
-***
+
 ### 2.4  Image Sampling and Quantization
 * 坐标(coordinate)数字化叫抽样(sampling);幅度(amplitude)数字化叫量化(quantization)
 * 抽样后的排列
@@ -270,5 +270,32 @@
     ![平移和旋转](/Users/chika/Desktop/notes/平移和旋转特性.png)
 * 介绍了一下傅立叶变换计算时的可分型,即先列变换再行变换或vice versa;如果不padding就会出错的原因,padding的必要性
 * 卷积和相关:相关用来matching,$f(x,y)\circ h(x,y)\iff F^*(u,v)H(u,)$,$f^*(x,y)h(x,y)\iff F(u,v)\circ H(u,v)$
-
 * FFT:把傅立叶变换拆成奇偶两项来进行运算以降低时间复杂度
+
+## 5 Image Restoration
+
+### 5.1 A Model of the Image Degradation/Restoration Process
+
+![退化复原模型](/Users/chika/Desktop/notes/退化:复原模型.png)
+
+### 5.2 Noise Models
+
+假定噪声独立于空间坐标,并且与图像本身不相关
+
+* Gaussian noise:$p(z)=\frac{1}{\sqrt{2\pi}\sigma}e^{-(z-\mu)^2/2\sigma^2}$
+
+* Rayleigh noise:$p(z)=\begin{cases}\frac{2}{b}(z-a)e^{(z-a)^2/b} &\text{for z$\geq$ a}\\0 & \text{for z <a}\end{cases}$,它的期望是 $a+\sqrt{\pi b/4}$,方差是$\frac{b(4-\pi)}{4}$,它会向右变形
+
+* Erlang noise:$p(z)=\begin{cases}\frac{a^bz^{b-1}}{(b-1)!}e^{-az} &\text{for z$\geq$ a}\\0 & \text{for z<a}\end{cases} $,$\mu=\frac{b}{a},\sigma^2=\frac{b}{a^2}$,只有在分母是$\Gamma(b)$时,这才称之为gamma noise
+
+* Exponential Noise:$p(z)=\begin{cases}ae^{-az}&\text{z$\geq 0$}\\0&\text{z<0}\end{cases}$,$\mu=\frac{1}{a},\sigma^2=\frac{1}{a^2}$,注意它是b=1时的Erlang噪声的特殊情况
+
+* Uniform noise:$p(z)=\begin{cases}\frac{1}{b-a}&\text{a$\leq$z$\leq$b}\\0&\text{otherwise}\end{cases}$,$\mu=\frac{a+b}{2},\sigma^2=\frac{(b-a)^2}{12}$
+
+* Impulse (salt-and-pepper) noise:$p(z)=\begin{cases}P_a&\text{for z = a}\\P_b&\text{for z = b}\\0&\text{otherwise}\end{cases}$
+
+  ![噪声的概率密度函数](/Users/chika/Desktop/notes/噪声的概率密度函数.png)
+
+* Periodic Noise:由电力或机电干扰产生,是本章讨论的唯一空间相关的噪声,可用频域滤波显著减少
+
+###5.3 Restoration in the Presence of Noise Only-Spatial Filtering
