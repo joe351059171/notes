@@ -300,4 +300,16 @@
 
 ###5.3 Restoration in the Presence of Noise Only-Spatial Filtering
 
-* 
+* When the only degradation present in an image is noise, we have:
+
+  $g(x,y)=f(x,y)+\eta(x,y) \&G(u,v)=F(u,v)+N(u,v)$,subtracting noise alone is not a realistic option because the noise is unknown.Spatial filtering is the method of choice in situations when only additive noise is present.
+
+* Mean Filters:
+
+  Arithmetic mean filter:$\hat{f}(x,y)=\frac{1}{mn}\sum\limits_{(s,t)\in S_{x,y}}g(s,t)$.虽然模糊了结果,但是降低了噪声
+
+  Geometric mean filter:$\hat{f}(x,y)=[\prod\limits_{(s,t)\in S_{x,y}}g(s,t)]^{\frac{1}{mn}}$模糊效果跟算数均值差不多,但图像丢失的细节少一点
+
+  Harmonic mean filter:$\hat{f}(x,y)=\frac{mn}{\sum\limits_{(s,t)\in S_{x,y}}\frac{1}{g(s,t)}}$,works well for salt noise,but fail for pepper noise.It does well also with other types of noise like Gaussian noise.
+
+  Contraharmonic mean filter:$\hat{f}(x,y)=\frac{\sum\limits_{(s,t)\in S_{xy}}g(s,t)^{Q+1}}{\sum\limits_{(s,t)\in S_{xy}}g(s,t)^Q}$,Q称阶数,Q为正消除pepper noise,为负消除salt noise.但是它不能同时消除两种噪声.当Q=0时,逆谐波均值滤波器退化为算术均值,为-1时为谐波均值滤波器.
