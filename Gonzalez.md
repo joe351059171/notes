@@ -298,7 +298,7 @@
 
 * Periodic Noise:由电力或机电干扰产生,是本章讨论的唯一空间相关的噪声,可用频域滤波显著减少
 
-###5.3 Restoration in the Presence of Noise Only-Spatial Filtering
+### 5.3 Restoration in the Presence of Noise Only-Spatial Filtering
 
 * When the only degradation present in an image is noise, we have:
 
@@ -327,3 +327,18 @@
   Alpha-trimmed mean filter:$\hat f(x,y)=\frac{1}{mn-d}\sum\limits_{(s,t)\in S_{xy}}g_r(s,t)$,d的取值在0到mn-1;d=0,这是算数均值滤波器,d=mn-1,这是中值滤波器;在d取其他值,修正的阿尔法均值滤波器在多种噪声的情况下很有用
 
 * Adaptive Filters
+
+  自适应滤波器的性能要优于以上所讨论的所有滤波器的性能,但是代价是复杂度变高了.以及现阶段讨论的退化图像只是加了噪声的原始图像
+
+  Adaptive,local noise reduction filter:![自适应滤波器](/Users/chika/Desktop/notes/自适应滤波器.png)
+
+  Adaptive median filter:![自适应滤波](/Users/chika/Desktop/notes/自适应中值滤波.png)
+
+  ![自适应进程A](/Users/chika/Desktop/notes/自适应进程A.png)
+
+  ![自适应进程B](/Users/chika/Desktop/notes/自适应进程B.png)
+
+  ![中值滤波核心思想](/Users/chika/Desktop/notes/理解自适应中值滤波.png)
+
+### 5.4 Periodic Noise Reduction by Frequecy Domain Filtering
+
