@@ -313,3 +313,17 @@
   Harmonic mean filter:$\hat{f}(x,y)=\frac{mn}{\sum\limits_{(s,t)\in S_{x,y}}\frac{1}{g(s,t)}}$,works well for salt noise,but fail for pepper noise.It does well also with other types of noise like Gaussian noise.
 
   Contraharmonic mean filter:$\hat{f}(x,y)=\frac{\sum\limits_{(s,t)\in S_{xy}}g(s,t)^{Q+1}}{\sum\limits_{(s,t)\in S_{xy}}g(s,t)^Q}$,Q称阶数,Q为正消除pepper noise,为负消除salt noise.但是它不能同时消除两种噪声.当Q=0时,逆谐波均值滤波器退化为算术均值,为-1时为谐波均值滤波器.
+
+* Order-Statistics Filters
+
+  Median filter:$\hat f(x,y)=median_{(s,t)\in S_{x,y}}\{g(s,t)\}$
+
+  对于某些类型的随机噪声,它可提供良好的去噪能力,并且比同尺寸的线性平滑滤波器引起的模糊更少.对单极或双极脉冲噪声尤其有效
+
+  Max and min filters:$\hat f(x,y)=max/min\{g(s,t)\}$
+
+  Midpoint filter:$\hat f(x,y)=\frac {1}{2}[\max\limits_{(s,t)\in S_{xy}}\{g(s,t)\}+\min\limits_{(s,t)\in S_{xy}}\{g(s,t)\}]$,对于随机分布噪声效果很好,例如高斯噪声或均匀噪声
+
+  Alpha-trimmed mean filter:$\hat f(x,y)=\frac{1}{mn-d}\sum\limits_{(s,t)\in S_{xy}}g_r(s,t)$,d的取值在0到mn-1;d=0,这是算数均值滤波器,d=mn-1,这是中值滤波器;在d取其他值,修正的阿尔法均值滤波器在多种噪声的情况下很有用
+
+* Adaptive Filters
