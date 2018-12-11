@@ -342,3 +342,15 @@
 
 ### 5.4 Periodic Noise Reduction by Frequecy Domain Filtering
 
+* Bandreject Filters:
+  1.ideal:
+  $H(u,v)=\begin{cases}1&\text{if $D(u,v)$<$D_0$-$\frac{W}{2}$}\\0&\text{if $D_0$-$\frac{W}{2}$$\leq$D(u,v)$\leq$$D_0$+$\frac{W}{2}$}\\1&\text{if $D(u,v)$>$D_0$+$\frac{W}{2}$} \end{cases}$
+  D(u,v)is the distance from the origin of the centered frequency rectangle.W is the width of the band.$D_0$is its radial center.
+  2.Butterworth:
+  $H(u,v)=\frac{1}{1+[\frac{D(u,v)W}{D^2(u,v)-D_0^2}]^{2n}}$
+  3.Gaussian:
+  $H(u,v)=1-e^{-\frac{1}{2}[\frac{D^2(u,v-D_0^2)}{D(u,v)W}]^2}$
+
+  ![带阻滤波器](/Users/chika/Desktop/notes/带阻滤波器.png)
+
+  one of the principle applications of bandreject filterinig is for noise removal in applications where the general location of the noise components in the frequency domain is approximately know.
