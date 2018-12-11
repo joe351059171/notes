@@ -354,3 +354,9 @@
   ![带阻滤波器](/Users/chika/Desktop/notes/带阻滤波器.png)
 
   one of the principle applications of bandreject filterinig is for noise removal in applications where the general location of the noise components in the frequency domain is approximately know.
+
+* Bandpass Filters
+
+  $H_{bp}(u,v)=1-H_{br}(uv)$,带通与带阻刚好相反
+
+* Notch Filters
