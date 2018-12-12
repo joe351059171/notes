@@ -359,4 +359,8 @@
 
   $H_{bp}(u,v)=1-H_{br}(uv)$,带通与带阻刚好相反
 
-* Notch Filters
+* Notch Filters:陷波必须以关于原点对称的形式出现,由于傅立叶变换的对称性.如果在原点,实际上就是高通滤波器.
+
+  ![陷波滤波器](/Users/chika/Desktop/notes/陷波滤波器.png)
+
+* Optium Notch Filtering:
