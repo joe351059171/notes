@@ -369,3 +369,6 @@
 
   考虑关于点(x,y)的大小为(2a+1)(2b+1)的邻域,则方差公式有$\sigma^2(x,y)=\frac{1}{(2a+1)(2b+1)}\sum\limits^a_{s=-a}\sum\limits^b_{t=-b}[{\hat f}(x+s,y+t)-\bar{\hat f}(x,y)]^2$,公式往里带,假设w在整个邻域基本不变,即w(x+s,y+t)=w(x,y),$\overline{w(x,y)\eta(x,y)}=w(x,y)\bar\eta(x,y)$,得到$\sigma^2(x,y)$关于w(x,y)的函数,求$\frac{\partial\sigma^2(x,y)}{\partial w(x,y)}=0$,解得$w(x,y)=\frac{\overline{g(x,y)\eta(x,y)}-\bar g(x,y)\bar\eta(x,y)}{\bar{\eta^2}(x,y)-{\bar\eta}^2(x,y)}$,有了加权函数,我们就可以解出f(x,y)的近似.
 ### 5.5 Linear,Position-Invariant Degradations
+
+* 线性,移不变的定义
+* 冲激响应$h(x,\alpha,y,\beta)=H[\delta(x-\alpha,y-\beta)]$
