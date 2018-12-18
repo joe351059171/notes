@@ -372,3 +372,8 @@
 
 * 线性,移不变的定义
 * 冲激响应$h(x,\alpha,y,\beta)=H[\delta(x-\alpha,y-\beta)]$
+* A linear system H is completely characterized by its impulse response
+* degradations are modeled as being the result of convolution, and restoration seeks to find filters that apply the process in reverse, the term *image deconvolution* is used frequently to signify linear image restoration.Similarly, the filteres used in the restoration process often are called *deconvolution filters*.
+
+### 5.6 Estimating the Degradation Function
+
