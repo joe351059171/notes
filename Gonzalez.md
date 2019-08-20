@@ -2,7 +2,7 @@
 ### 2.1  Elements of Visual Perception
 **一些人眼的构成,人眼成像的细节,错觉**
 
-![人眼](/Users/chika/Desktop/notes/人眼.png)
+![人眼](https://github.com/CJW-elemmire/notes/blob/master/人眼.png)
 * 实验数据指出，主观亮度（即由人的视觉系统感觉到的亮度）是进入眼睛的光强度的对数函数。
 * 韦伯率（ΔIc/I）实验表明，在低的照明级别，亮度辨别较差（韦伯比大），当背景照明增加时亮度辨别得到改善（韦伯比降低）。
 * 感觉亮度不是简单的强度函数（马赫带效应、同时对比度效应）。
@@ -20,9 +20,9 @@
 * 坐标(coordinate)数字化叫抽样(sampling);幅度(amplitude)数字化叫量化(quantization)
 * 抽样后的排列
 图像f(x,y)可以表示成矩阵形式
-![矩阵表示](/Users/chika/Desktop/notes/图像的矩阵表示1.png)
+![矩阵表示](https://github.com/CJW-elemmire/notes/blob/master/图像的矩阵表示1.png)
 或更传统的形式
-![矩阵表示](/Users/chika/Desktop/notes/图像的矩阵表示2.png)
+![矩阵表示](https://github.com/CJW-elemmire/notes/blob/master/图像的矩阵表示2.png)
 * 处于处理存储和抽样硬件考虑,灰度的总数目灰度级常常是2的幂次:
 				L = 2<sup>k</sup>
 * 存储图像所需的比特数b为:
@@ -32,12 +32,12 @@
 * 空间分辨率:一幅图中最小的可分辨细节
 * false contouring:insufficient number of gray levels in smooth areas of a digital image causes a ridgelike structures.通常在16或更少灰度级的图像中比较明显.
 * isopreference curve:同时改变N和k造成的影响.
-![iso-pic](/Users/chika/Desktop/notes/iso-pic.png)
-![iso-curve](/Users/chika/Desktop/notes/iso-curve.png)
+![iso-pic](https://github.com/CJW-elemmire/notes/blob/master/iso-pic.png)
+![iso-curve](https://github.com/CJW-elemmire/notes/blob/master/iso-curve.png)
 发现:等偏爱曲线倾向右上方,这很好理解,N和K越大,图像细节越好,质量越高.
 值得注意的是,**有大量细节的图像只需要很少的灰度级**,以及对于lena和摄影师,在一定程度上,尽管图像质量保持相同(很短的一段),但k实际上是在下降的.可能的原因时k的减小导致了图的对比度明显增加,人眼把它当作了图片质量的改善.
 * 减少抽样图像混叠的方法是通过模糊处理减少高频分量.尽管无论如何混叠都是存在的.混叠频率的影响可以在合适条件下以Moiré Pattern的形式被观测到.
-![摩尔条纹](/Users/chika/Desktop/notes/moire_pattern.png)
+![摩尔条纹](https://github.com/CJW-elemmire/notes/blob/master/moire_pattern.png)
 * nearest neighbor interpolation:考虑500x500的图像要放大到750x750.创建一个750x750的网格,与原始图像有相同间隔,然后收缩,使其与原图匹配.显然收缩后像素间隔要小于500x500,我们就在原图中找最近的像素,把值赋给新的像素点.完成之后扩展到正常的750x750.
 * bilinear interpolation:用四个最近邻去估计给定位置的灰度.
 				v(x,y) = ax+by+cxy+d
@@ -79,7 +79,7 @@
 * 局部增强:neighbor,一个一个移,计算邻域中的点的直方图,但通常会产生checkerboard effect.
 * 直方图的一些数据:均值、方差.用来局部增强.
 
-![局部增强](/Users/chika/Desktop/notes/局部增强.png)
+![局部增强](https://github.com/CJW-elemmire/notes/blob/master/局部增强.png)
 
 * 通过全局均值和局部均值找出暗区域,通过方差(对比度)确定暗区域中需要增强的点
 ### 3.4 Enhancement Using Arithmetic/Logic Operations
@@ -106,7 +106,7 @@
 
 * 边缘在灰度上来说常常类似ramp,而由图可以看出
 
-  ![一阶&二阶差分](/Users/chika/Desktop/notes/一阶和二阶差分.png)
+  ![一阶&二阶差分](https://github.com/CJW-elemmire/notes/blob/master/一阶和二阶差分.png)
 
 在ramp的部分一阶差分一直都是非零的,也就是说如果用一阶差分处理过后的图像边缘部分一般是很宽的;而二阶微分在ramp的起始位置是从负到0到正的,这就意味着会产生一个双边缘
 
@@ -124,7 +124,7 @@
 
   它的滤波模版如图3.7(a);至于对角线方向,我们在对角线方向加入两项,然后在中新元素减去即可;实际中也有用如c或d这样的滤波模版,差别仅仅是符号而已,在用拉普拉斯算子滤波过后的图像与其他图像合并是考虑到符号差异来进行加减即可,即中心系数为正时用+号,为负用-号
 
-  ![laplacian滤波模版](/Users/chika/Desktop/notes/laplacian滤波模版.png)
+  ![laplacian滤波模版](https://github.com/CJW-elemmire/notes/blob/master/laplacian滤波模版.png)
 
 需要注意的是,在实际中,也可以略过先滤波再加减图像的步骤,可以直接一步到位获得锐化图像.即直接加上一个f(x,y)就可以,即3.37中的c,d的中心系数从4变为了5,从8变为了9(或a,b减小到-5,-9)
 
@@ -138,7 +138,7 @@
 
 * Robert corss-gradient operators&Sobel operators,梯度可消除慢变化背景,增强小突变
 
-  ![交叉梯度算子和索贝尔算子](/Users/chika/Desktop/notes/交叉梯度算子&索贝尔算子.png)
+  ![交叉梯度算子和索贝尔算子](https://github.com/CJW-elemmire/notes/blob/master/交叉梯度算子&索贝尔算子.png)
 ## 4  Image Enhancement in the Frequency Domain
 ### 4.2 Introduction to the Fourier Transform and the Frequency Domain
 * 傅立叶变换对
@@ -211,22 +211,22 @@
   我们知道:$f(x,y)*h(x,y)\iff F(u,v)H(u,v)$,那把f(x,y)换成$\delta(x,y)$,就是$\delta(x,y)*h(x,y)\iff$$\frak F$$[\delta(x,y)]H(u,v)$,又$\frak F$$[\delta(x,y)]$是个常数,左边的结果也是个常数乘h(x,y),那么就有$h(x,y)\iff H(u,v)$
 
 * 我们常用基于高斯函数的过滤因为高斯函数的形状简单,而且他的变换都是高斯实函数:$H(u)=Ae^{-u^2/2\sigma^2}$,它的逆变换$h(x)=\sqrt{2\pi}Ae^{-2\pi^2\sigma^2x^2}$,可以看到他们两随$\sigma$的变换,形状刚好是呈相反趋势变化的
-![高斯滤波](/Users/chika/Desktop/notes/高斯滤波.png)
+![高斯滤波](https://github.com/CJW-elemmire/notes/blob/master/高斯滤波.png)
 
 ### 4.3 Smoothing Frequecy-Domain Filters
 * 主要三种低通滤波器:ideal,Butterworth&Gaussian filters;ideal very sharp ,Guassian very smooth,Butterworth is a transition between 2 extremes,order越高越接近理想,越低越接近高斯
 
 * ILPF:$H(u,v)=\begin{cases} 1,&\text{if D(u,v) $\leq D_0$}\\0,&\text{if D(u,v) $> D_0$}\end{cases}$,$D_0$是指定的非负值,D(u,v)是点(u,v)到频率矩形原点的距离.
 
-  ![ILPF](/Users/chika/Desktop/notes/ILPF.png)
+  ![ILPF](https://github.com/CJW-elemmire/notes/blob/master/ILPF.png)
 
   圆内无衰减,圆外完全被衰减
 
-* $P_T=\sum\limits^{M-1}_{u=0}\sum\limits^{N-1}_{v=0}P(u,v)$,计算图像总的功率,然后通过$\alpha=100[\sum\limits_{u}\sum\limits_vP(u,v)/P_T]$,求得当前的subimage占总的功率的多少,然后这个对应了功率图中圆占的面积.![功率圆](/Users/chika/Desktop/notes/功率圆.png)
+* $P_T=\sum\limits^{M-1}_{u=0}\sum\limits^{N-1}_{v=0}P(u,v)$,计算图像总的功率,然后通过$\alpha=100[\sum\limits_{u}\sum\limits_vP(u,v)/P_T]$,求得当前的subimage占总的功率的多少,然后这个对应了功率图中圆占的面积.![功率圆](https://github.com/CJW-elemmire/notes/blob/master/功率圆.png)
 
   随着$\alpha$的增大,高频的增加使细节越来越好;“ringing”是ILPF的的一种特性
 
-* ![ringing的解释](/Users/chika/Desktop/notes/ringing的解释.png)
+* ![ringing的解释](https://github.com/CJW-elemmire/notes/blob/master/ringing的解释.png)
 
 * BLPF:$H(u,v)=\frac{1}{1+[D(u,v)/D_0]^{2n}}$,Ringing generally is imperceptible in filters of order 2, 一阶完全没有,高阶就会越来越明显;
 * GLPF:$H(u,v)=e^{-D^2(u,v)/{2\sigma^2}}$通过令$\sigma=D_0$,有$H(u,v)=e^{-D^2(u,v)/{2D_0^2}}$,$D_0$是截止频率,当$D(u,v)=D_0$时,GLPF下降到最大值的0.607.GLPF平滑的效果比二阶的BLPF要差一点,但他没有ringing,这是很重要的
@@ -235,17 +235,17 @@
 
 * IHPF:$H(u,v)=\begin{cases} 0,&\text{if D(u,v) $\leq D_0$}\\1,&\text{if D(u,v) $> D_0$}\end{cases}$,可以想见的是IHPF也是有ringing的
 
-  ![HPF剖面图](/Users/chika/Desktop/notes/HPF剖面图.png)
+  ![HPF剖面图](https://github.com/CJW-elemmire/notes/blob/master/HPF剖面图.png)
 
 * BHPF:$H(u,v)=\frac{1}{1+[D_0/D(u,v)]^{2n}}$
 
 * GHPF:$H(u,v)=1-e^{-D^2(u,v)/{2D_0^2}}$,高斯滤波得到的结果更加平滑,效果较好
 
-* ![IHPF滤波](/Users/chika/Desktop/notes/IHPF滤波.png)
+* ![IHPF滤波](https://github.com/CJW-elemmire/notes/blob/master/IHPF滤波.png)
 
-  ​	![BHPF滤波](/Users/chika/Desktop/notes/BHPF滤波.png)
+  ​	![BHPF滤波](https://github.com/CJW-elemmire/notes/blob/master/BHPF滤波.png)
 
-  ![GHPF滤波](/Users/chika/Desktop/notes/GHPF滤波.png)
+  ![GHPF滤波](https://github.com/CJW-elemmire/notes/blob/master/GHPF滤波.png)
 
 * Laplacian in the Frequency Domain
 
@@ -255,11 +255,11 @@
 ### 4.5 Homomorphic Filtering
 * 假定一幅图像可分解为i(x,y)和r(x,y)的乘积,由于傅立叶变换的性质,F(ab)不等于F(a)F(b),于是转换成ln的函数;那ln(x*y)就可以转换成lnx+lny,这个就可以用傅立叶变换了;之后又e一下,就得到了变换后的图像.
 
-  ![同态滤波小结](/Users/chika/Desktop/notes/同态滤波小结.png)
+  ![同态滤波小结](https://github.com/CJW-elemmire/notes/blob/master/同态滤波小结.png)
 
   同态滤波可以更好控制照射分量和反射分量;通过指定滤波函数H(u,v)可以用不同的方法去影响傅立叶变换的高频和低频分量,比如:
 
-  ![同态滤波](/Users/chika/Desktop/notes/同态滤波.png)
+  ![同态滤波](https://github.com/CJW-elemmire/notes/blob/master/同态滤波.png)
 
 如果$\gamma_L$和$\gamma_H$选定,而且$\gamma_L<1$,$\gamma_H>1$,那么这个滤波函数就趋向于衰减照射(低频)的贡献,增强高频(反射)的贡献.最终结果是同时进行动态范围的压缩和对比度的增强.
 
@@ -267,7 +267,7 @@
 ### 4.6 Implementation
 * some properties of DFT
     平移和旋转:
-    ![平移和旋转](/Users/chika/Desktop/notes/平移和旋转特性.png)
+    ![平移和旋转](https://github.com/CJW-elemmire/notes/blob/master/平移和旋转特性.png)
 * 介绍了一下傅立叶变换计算时的可分型,即先列变换再行变换或vice versa;如果不padding就会出错的原因,padding的必要性
 * 卷积和相关:相关用来matching,$f(x,y)\circ h(x,y)\iff F^*(u,v)H(u,)$,$f^*(x,y)h(x,y)\iff F(u,v)\circ H(u,v)$
 * FFT:把傅立叶变换拆成奇偶两项来进行运算以降低时间复杂度
@@ -276,7 +276,7 @@
 
 ### 5.1 A Model of the Image Degradation/Restoration Process
 
-![退化复原模型](/Users/chika/Desktop/notes/退化:复原模型.png)
+![退化复原模型](https://github.com/CJW-elemmire/notes/blob/master/退化:复原模型.png)
 
 ### 5.2 Noise Models
 
@@ -294,7 +294,7 @@
 
 * Impulse (salt-and-pepper) noise:$p(z)=\begin{cases}P_a&\text{for z = a}\\P_b&\text{for z = b}\\0&\text{otherwise}\end{cases}$
 
-  ![噪声的概率密度函数](/Users/chika/Desktop/notes/噪声的概率密度函数.png)
+  ![噪声的概率密度函数](https://github.com/CJW-elemmire/notes/blob/master/噪声的概率密度函数.png)
 
 * Periodic Noise:由电力或机电干扰产生,是本章讨论的唯一空间相关的噪声,可用频域滤波显著减少
 
@@ -332,13 +332,13 @@
 
   Adaptive,local noise reduction filter:![自适应滤波器](/Users/chika/Desktop/notes/自适应滤波器.png)
 
-  Adaptive median filter:![自适应滤波](/Users/chika/Desktop/notes/自适应中值滤波.png)
+  Adaptive median filter:![自适应滤波](https://github.com/CJW-elemmire/notes/blob/master/自适应中值滤波.png)
 
-  ![自适应进程A](/Users/chika/Desktop/notes/自适应进程A.png)
+  ![自适应进程A](https://github.com/CJW-elemmire/notes/blob/master/自适应进程A.png)
 
-  ![自适应进程B](/Users/chika/Desktop/notes/自适应进程B.png)
+  ![自适应进程B](https://github.com/CJW-elemmire/notes/blob/master/自适应进程B.png)
 
-  ![中值滤波核心思想](/Users/chika/Desktop/notes/理解自适应中值滤波.png)
+  ![中值滤波核心思想](https://github.com/CJW-elemmire/notes/blob/master/理解自适应中值滤波.png)
 
 ### 5.4 Periodic Noise Reduction by Frequecy Domain Filtering
 
@@ -351,7 +351,7 @@
   3.Gaussian:
   $H(u,v)=1-e^{-\frac{1}{2}[\frac{D^2(u,v-D_0^2)}{D(u,v)W}]^2}$
 
-  ![带阻滤波器](/Users/chika/Desktop/notes/带阻滤波器.png)
+  ![带阻滤波器](https://github.com/CJW-elemmire/notes/blob/master/带阻滤波器.png)
 
   one of the principle applications of bandreject filterinig is for noise removal in applications where the general location of the noise components in the frequency domain is approximately know.
 
@@ -361,7 +361,7 @@
 
 * Notch Filters:陷波必须以关于原点对称的形式出现,由于傅立叶变换的对称性.如果在原点,实际上就是高通滤波器.
 
-  ![陷波滤波器](/Users/chika/Desktop/notes/陷波滤波器.png)
+  ![陷波滤波器](https://github.com/CJW-elemmire/notes/blob/master/陷波滤波器.png)
 
 * Optium Notch Filtering:当存在几种干扰分量时,前面讨论的方法未必能用.因为在滤波过程中可能会消除太多的图像信息.
 
